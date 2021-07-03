@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> openBraces;
+        
+        for (int i = 0;i<s.size();i++) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+                openBraces.push(s[i]);
+            } else if (s[i] == ')' && !openBraces.empty() && openBraces.top() == '(') {
+                openBraces.pop();
+            } else if (s[i] == '}' && !openBraces.empty() && openBraces.top() == '{') {
+                openBraces.pop();
+            } else if (s[i] == ']' && !openBraces.empty() && openBraces.top() == '[') {
+                openBraces.pop();
+            } else {
+                return false;
+            }
+        }
+        return openBraces.size() == 0;
+    }
+};
